@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   root "forecasts#index"
 
   # Resource route for forecasts
-  resources :forecasts
+  resources :forecasts, only: :index
 
 end

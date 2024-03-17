@@ -3,13 +3,9 @@ class ForecastsController < ApplicationController
     @address_search = params[:address_search]
 
     if @address_search
-      # Geocode lookup
-      # Redirect to show page with authoritative location
-      redirect_to action: "show", id: "unknown", address_search: @address_search
+      @location = Location.search(@address_search)
+      @forecast = nil # ForecastLookup.by_location(@location)
     end
   end
 
-  def show
-    @address_search = params[:address_search]
-  end
 end
