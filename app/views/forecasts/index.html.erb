@@ -6,10 +6,16 @@
   <p>No location found.</p>
 <% end %>
 
+<% if @api_error %>
+  <p>There was a problem retrieving the forecast.  Retry, or check the rails log.</p>
+<% end %>
+
 <% if @location %>
   <h2>Forecast for <%= @location.display_name %></h2>
 <% end %>
 
 <% if @forecast %>
   <h3>Current Temperature: <%= @forecast.current_temperature %></h3>
+  <p><%= @forecast.short_forecast %></p>
 <% end %>
+

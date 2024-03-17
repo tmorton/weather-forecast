@@ -13,4 +13,8 @@ class Forecast
     return "unknown" unless degrees
     "#{degrees}° #{unit}"
   end
+
+  def short_forecast
+    @hourly_forecast_data.dig('properties', 'periods', 0, 'shortForecast')
+  end
 end

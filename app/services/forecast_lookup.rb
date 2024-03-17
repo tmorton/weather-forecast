@@ -48,6 +48,7 @@ class ForecastLookup
       f.response :json
       f.response :raise_error
       f.response :logger
+      f.use FaradayMiddleware::FollowRedirects
     end
   end
 end
