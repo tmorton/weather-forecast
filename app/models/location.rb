@@ -11,8 +11,8 @@ class Location
 
     Location.new({
       display_name: result.display_name,
-      lat: result.latitude.to_s,
-      lon: result.longitude.to_s,
+      lat: result.latitude,
+      lon: result.longitude,
       postal_code: result.postal_code.to_s,
     })
   end

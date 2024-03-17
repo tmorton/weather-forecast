@@ -9,3 +9,7 @@
 <% if @location %>
   <h2>Forecast for <%= @location.display_name %></h2>
 <% end %>
+
+<% if @forecast %>
+  <h3>Current Temperature: <%= @forecast.current_temperature %></h3>
+<% end %>

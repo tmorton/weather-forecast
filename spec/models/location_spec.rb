@@ -8,8 +8,8 @@ RSpec.describe Location, type: :model do
         location = Location.search(address_search)
 
         expect(location.display_name).to eq('White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States')
-        expect(location.lat).to eq('38.897699700000004')
-        expect(location.lon).to eq('-77.03655315')
+        expect(location.lat).to eq(38.897699700000004)
+        expect(location.lon).to eq(-77.03655315)
         expect(location.postal_code).to eq('20500')
       end
     end

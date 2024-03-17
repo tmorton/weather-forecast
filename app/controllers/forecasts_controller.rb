@@ -4,7 +4,7 @@ class ForecastsController < ApplicationController
 
     if @address_search
       @location = Location.search(@address_search)
-      @forecast = nil # ForecastLookup.by_location(@location)
+      @forecast = ForecastLookup.by_location(@location)
     end
   end
 

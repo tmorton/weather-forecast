@@ -83,7 +83,6 @@ GEM
     bootsnap (1.18.3)
       msgpack (~> 1.2)
     builder (3.2.4)
-    coderay (1.1.3)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crack (1.0.0)
@@ -98,6 +97,10 @@ GEM
     drb (2.2.1)
     error_highlight (0.6.0)
     erubi (1.12.0)
+    faraday (2.9.0)
+      faraday-net_http (>= 2.0, < 3.2)
+    faraday-net_http (3.1.0)
+      net-http
     geocoder (1.8.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -124,11 +127,12 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.4)
-    method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.22.3)
     msgpack (1.7.2)
     mutex_m (0.2.0)
+    net-http (0.4.1)
+      uri
     net-imap (0.4.10)
       date
       net-protocol
@@ -151,9 +155,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
-    pry (0.14.2)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
@@ -244,6 +245,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (0.13.0)
     vcr (6.2.0)
     web-console (4.2.1)
       actionview (>= 6.0.0)
@@ -272,10 +274,10 @@ DEPENDENCIES
   bootsnap
   debug
   error_highlight (>= 0.4.0)
+  faraday
   geocoder
   importmap-rails
   jbuilder
-  pry
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.2)
   rspec-rails
