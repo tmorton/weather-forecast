@@ -6,12 +6,12 @@
   <p>No location found.</p>
 <% end %>
 
-<% if @api_error %>
-  <p>There was a problem retrieving the forecast.  Retry, or check the rails log.</p>
-<% end %>
-
 <% if @location %>
   <h2>Forecast for <%= @location.display_name %></h2>
+<% end %>
+
+<% if @api_error %>
+  <p>There was a problem retrieving the forecast from the weather API.  This happens occasionally (hey, it's free).  Try again?</p>
 <% end %>
 
 <% if @forecast %>

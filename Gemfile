@@ -45,8 +45,8 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "geocoder"
-gem "faraday"
-gem "faraday_middleware"
+gem "faraday", '~> 2.3'
+gem 'faraday-follow_redirects'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
