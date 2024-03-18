@@ -17,4 +17,8 @@ class Forecast
   def short_forecast
     @hourly_forecast_data.dig('properties', 'periods', 0, 'shortForecast')
   end
+
+  def from_cache?
+    @hourly_forecast_data.dig('from_cache')
+  end
 end

@@ -17,5 +17,7 @@
 <% if @forecast %>
   <h3>Current Temperature: <%= @forecast.current_temperature %></h3>
   <p><%= @forecast.short_forecast %></p>
+
+  <%=  @forecast.from_cache? ? "Cached forecast" : "New forecast (not cached)" %>
 <% end %>
 

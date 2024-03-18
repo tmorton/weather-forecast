@@ -19,25 +19,15 @@ class ForecastLookup
     Forecast.new(hourly_forecast_data)
   end
 
-  # Retrieve information about the location from the API
-  # We need this to get the "grid location", which is how NOAA
-  # categorizes locations.
-  def point_data
-    points_str = [@location.lat, @location.lon].join(',')
-    data = connection.get("/points/#{points_str}").body
-    data
-  rescue Faraday::Error => e
-    raise APIError.new(e)
-  end
-
   def hourly_forecast_data
-    url = point_data.dig('properties', 'forecastHourly')
-    raise APIError.new("Could not locate forecast URL") unless url
+    from_cache = true
 
-    data = connection.get(url).body
-    data
-  rescue Faraday::Error => e
-    raise APIError.new(e)
+    cache_key = "forecast/postal_code/#{@location.postal_code}"
+    data = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
+      from_cache = false
+      fetch_hourly_forecast_data
+    end
+    data.merge({ 'from_cache' => from_cache })
   end
 
   private
@@ -49,5 +39,23 @@ class ForecastLookup
       f.response :raise_error
       f.response :follow_redirects
     end
+  end
+
+  def point_data
+    points_str = [@location.lat, @location.lon].join(',')
+    data = connection.get("/points/#{points_str}").body
+    data
+  rescue Faraday::Error => e
+    raise APIError.new(e)
+  end
+
+  def fetch_hourly_forecast_data
+    url = point_data.dig('properties', 'forecastHourly')
+    raise APIError.new("Could not locate forecast URL") unless url
+
+    data = connection.get(url).body
+    data
+  rescue Faraday::Error => e
+    raise APIError.new(e)
   end
 end
